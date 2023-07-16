@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import BoardList from './components/BoardList';
+import Board from './components/Board';
+import MemberList from './components/MemberList';
+import ActivityFeed from './components/ActivityFeed';
+import CardModal from './components/CardModal';
+import Comment from './components/Comment';
+import Checklist from './components/CheckList';
+import Attachment from './components/Attachment';
+import Search from './components/Search';
+import Task from './components/Task';
+import List from './components/List';
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+
+        <Routes>
+          <Route exact path="/" element={<BoardList/>} />
+          <Route exact path="/board/:boardId" element={<Board/>} />
+          <Route exact path="/task/:taskId" element={<Task/>} />
+          <Route exact path="/list/:listId" element={<List/>} />
+
+          {/* Add more routes for other components as needed */}
+        </Routes>
+
+        <MemberList />
+        <ActivityFeed />
+        <CardModal />
+        <Comment />
+        <Checklist />
+        <Attachment />
+        <Search />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
